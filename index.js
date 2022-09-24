@@ -6,46 +6,46 @@ const generateMarkdown = require("./utils/generateMarkdown.js");
 const questions = [
   {
     type: "input",
-    name: "name",
+    name: "title",
     message: "Project name?",
   },
   {
     type: "input",
-    name: "Description",
+    name: "description",
     message: "Description of the project?",
   },
   {
     type: "input",
-    name: "Installation Instructions",
+    name: "installation",
     message: "Please add installation instructions",
   },
   {
     type: "input",
-    name: "Usage",
+    name: "usage",
     message: "Please add usage information",
   },
   {
     type: "input",
-    name: "Contribution",
+    name: "contribution",
     message: "Please add contribution information",
   },
   {
     type: "input",
-    name: "Testing",
+    name: "test",
     message: "Please add testing instructions",
   },
   {
     type: "list",
-    name: "License",
+    name: "license",
     message: "please choose a license",
-    choices: ["GNU", "MIT", "Unilicense", "No license"],
+    choices: ["MIT", "No license"],
     filter(val) {
       return val.toUpperCase();
     },
   },
   {
     type: "input",
-    name: "github username",
+    name: "github",
     message: "Please enter your github username",
   },
   {
@@ -55,7 +55,28 @@ const questions = [
   },
 ];
 
-//run question function
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log("Your Readme is done, you may now view it");
+  });
+}
+
+// Function to initialize app
+function init() {
+  inquirer.prompt(questions).then(function (userInput) {
+    console.log(userInput);
+    writeToFile("README.md", generateMarkdown(userInput));
+  });
+}
+
+// Function call to initialize app
+init();
+
+/* //run question function
 async function runQ() {
   return inquirer
     .prompt(questions)
@@ -68,13 +89,11 @@ async function runQ() {
     });
 }
 
-runQ();
+runQ(); */
 
 /* // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
-
 // TODO: Create a function to initialize app
 function init() {}
-
 // Function call to initialize app
 init(); */
