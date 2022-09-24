@@ -75,25 +75,3 @@ function init() {
 
 // Function call to initialize app
 init();
-
-/* //run question function
-async function runQ() {
-  return inquirer
-    .prompt(questions)
-    .then((answers) => {
-      console.log(answers);
-      return answers;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-runQ(); */
-
-/* // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-// TODO: Create a function to initialize app
-function init() {}
-// Function call to initialize app
-init(); */
